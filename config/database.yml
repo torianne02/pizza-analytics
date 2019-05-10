@@ -1,0 +1,12 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: pizza-analytics_development
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: pizza-analytics_test
+  pool: 5
+  timeout: 5000
