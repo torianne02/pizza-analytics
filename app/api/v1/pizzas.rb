@@ -16,7 +16,7 @@ module API
           requires :topping, type: String, desc: "Type of topping"
         end
         get ':topping' do
-          Pizzas.where(topping: permitted_params[:topping])
+          Pizza.where(topping: permitted_params[:topping])
         end
 
         # need to figure out how to sum all pizzas eaten on each day
