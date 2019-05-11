@@ -1,13 +1,13 @@
 module API
   module V1
     class People < Grape::API
-      version 'v1', using: :path, vendor: 'pizza-analytics'
+      version 'v1', using: :path
 
       resource :people do
         # returns ALL people
         desc "Return all people"
         get "/" do
-          Person.all.as_json_api
+          Person.all
         end
 
         # returns ONE person by NAME
@@ -16,7 +16,7 @@ module API
           requires :name, type: String, desc: "Name of the person"
         end
         get ":name" do
-          Person.where(name: permitted_params[:name]).as_json_api
+          Person.where(name: permitted_params[:name])
         end
       end
     end
