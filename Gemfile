@@ -12,5 +12,6 @@ gem 'rake'
 gem 'require_all'
 gem 'shotgun'
 gem 'pg'
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'pry'
