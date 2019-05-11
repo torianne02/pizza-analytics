@@ -8,8 +8,8 @@ module API
       end
 
       # GET pizza by topping
-      get '/pizzas/:type' do
-        @pizza = Pizza.find_by(type: params[:type])
+      get '/pizzas/:topping' do
+        @pizza = Pizza.find_by(topping: params[:topping])
         render json: @pizza
       end
 
@@ -20,7 +20,7 @@ module API
       end
 
       # GET day within month that has highest consumption
-      get '/pizzas/highest_consumption' do 
+      get '/pizzas/highest_consumption' do
         @pizzas = Pizza.all
         # need to figure out logic for adding pizzas for each day
         # will store day sums in obj and will find max - return day
