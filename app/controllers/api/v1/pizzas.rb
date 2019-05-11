@@ -1,8 +1,6 @@
 module API
   module V1
     class Pizzas < Grape::API
-      include API::V1::Defaults
-
       resource :pizzas do
         # returns ALL pizzas
         desc "Return all pizza"

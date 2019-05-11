@@ -1,8 +1,6 @@
 module API
   module V1
     class People < Grape::API
-      include API::V1::Defaults
-
       resource :people do
         # returns ALL people
         desc "Return all people"
@@ -10,7 +8,7 @@ module API
           People.all
         end
 
-        # returns ONE person by NAME 
+        # returns ONE person by NAME
         desc "Return a person"
         params do
           requires :name, type: String, desc: "Name of the person"
