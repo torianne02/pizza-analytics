@@ -1,12 +1,24 @@
-class ApplicationController < Sinatra::Base
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-    enable :sessions
-    set :session_secret, "secret"
-  end
+# require './pizzas_controller.rb'
+# require './people_controller.rb'
 
-  get '/' do
-    "Hello World"
+module API
+  module V1
+    class ApplicationController < Sinatra::Base
+      set :namespace, '/api/v1'
+
+      configure do
+        set :public_folder, 'public'
+        set :views, 'app/views'
+        enable :sessions
+        set :session_secret, "secret"
+      end
+
+      get '/' do
+        "Hello World"
+      end
+
+      # use PeopleController
+      # use PizzasController
+    end
   end
 end

@@ -10,5 +10,4 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 use Rack::MethodOverride
-# run Rack::Cascade.new [API]
-run ApplicationController
+run Rack::Cascade.new [API]
