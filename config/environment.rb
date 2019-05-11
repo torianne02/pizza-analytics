@@ -16,4 +16,5 @@ configure :production do
  )
 end
 
+require_relative 'application'
 require_all 'app'
