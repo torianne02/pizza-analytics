@@ -1,5 +1,5 @@
-module API
-  module V1
+# module API
+#   module V1
     class PeopleController < ApplicationController
       # GET all people
       get '/people' do
@@ -13,5 +13,5 @@ module API
         render json: @person
       end
     end
-  end
-end
+#   end
+# end
