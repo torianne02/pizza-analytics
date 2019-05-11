@@ -14,6 +14,9 @@ module API
 
     get :status do
       { status: 'ok' }
+
+      mount V1::People
+      mount V1::Pizzas
     end
   end
 end
