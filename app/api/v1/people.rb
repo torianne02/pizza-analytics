@@ -1,11 +1,13 @@
 module API
   module V1
     class People < Grape::API
+      version 'v1', using: :path
+
       resource :people do
         # returns ALL people
         desc "Return all people"
-        get "", root: :people do
-          People.all
+        get "/" do
+          Person.all
         end
 
         # returns ONE person by NAME
@@ -13,8 +15,8 @@ module API
         params do
           requires :name, type: String, desc: "Name of the person"
         end
-        get ":name", root: "person" do
-          Person.where(name: permitted_params[:name]).first!
+        get ":name" do
+          Person.find_by(name: permitted_params[:name])
         end
       end
     end

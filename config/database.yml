@@ -1,12 +1,14 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: pizza-analytics_development
+  host: localhost
+  username: postgres
   pool: 5
-  timeout: 5000
+
+development:
+  <<: *default
+  database: pizza-analytics_development
 
 test:
-  adapter: postgresql
+  <<: *default
   database: pizza-analytics_test
-  pool: 5
-  timeout: 5000

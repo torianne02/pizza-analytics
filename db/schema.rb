@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_05_10_231131) do
   end
 
   create_table "pizzas", force: :cascade do |t|
-    t.string "type"
+    t.string "topping"
     t.date "date_consumed"
     t.integer "person_id"
   end

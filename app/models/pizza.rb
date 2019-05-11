@@ -1,3 +1,5 @@
 class Pizza < ActiveRecord::Base
   belongs_to :person
-end 
+
+  validates :topping, presence: true 
+end
