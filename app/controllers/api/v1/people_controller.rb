@@ -3,7 +3,7 @@ module API
     class PeopleController < ApplicationController
       # GET all people
       get '/people' do
-        @people = People.all
+        @people = Person.all
         render json: @people
       end
 
