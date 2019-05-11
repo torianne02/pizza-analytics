@@ -6,10 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# create people
 Person.create(name: 'Tori')
 Person.create(name: 'Kevin')
 Person.create(name: 'Eli')
 
+# create pizzas
 Pizza.create(person_id: 1, topping: 'pepperoni', date_consumed: "2019-05-05")
 Pizza.create(person_id: 2, topping: 'sausage', date_consumed: "2019-05-10")
 Pizza.create(person_id: 1, topping: 'bacon', date_consumed: "2019-05-04")
