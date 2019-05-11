@@ -15,8 +15,8 @@ module API
         params do
           requires :topping, type: String, desc: "Type of topping"
         end
-        get ":topping" do
-          Pizzas.where(topping: permitted_params[:topping]).first!
+        get ':topping' do
+          Pizzas.where(topping: permitted_params[:topping])
         end
 
         # need to figure out how to sum all pizzas eaten on each day

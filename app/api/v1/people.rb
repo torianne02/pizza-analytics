@@ -16,7 +16,7 @@ module API
           requires :name, type: String, desc: "Name of the person"
         end
         get ":name" do
-          Person.where(name: permitted_params[:name])
+          Person.find_by(name: permitted_params[:name])
         end
       end
     end
