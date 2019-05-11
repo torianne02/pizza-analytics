@@ -1,6 +1,6 @@
 require_relative './config/environment'
 require 'grape'
-require './app'
+require './web'
 require './controllers/api/base.rb'
 require 'rack/cors'
 
@@ -17,4 +17,4 @@ use Rack::Cors do
   end
 end
 
-run Rack::Cascade.new [API::Base]
+run Rack::Cascade.new [Web, API::Base]
