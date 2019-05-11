@@ -14,5 +14,6 @@ gem 'shotgun'
 gem 'pg'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'grape-active_model_serializers'
+gem 'grape-swagger'
 
 gem 'pry'
