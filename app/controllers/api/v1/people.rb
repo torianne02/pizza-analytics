@@ -4,11 +4,13 @@ module API
       include API::V1::Defaults
 
       resource :people do
+        # returns ALL people
         desc "Return all people"
         get "", root: :people do
           People.all
         end
 
+        # returns ONE person by NAME 
         desc "Return a person"
         params do
           requires :name, type: String, desc: "Name of the person"
