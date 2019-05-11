@@ -2,7 +2,7 @@ module API
   module V1
     class Pizzas < Grape::API
       version 'v1', using: :path, vendor: 'pizza-analytics'
-      
+
       resource :pizzas do
         # returns ALL pizzas
         desc "Return all pizza"
@@ -13,10 +13,10 @@ module API
         # returns ALL pizzas BY topping
         desc "Return all pizzas of a certain topping"
         params do
-          requires :type, type: String, desc: "Type of topping"
+          requires :topping, type: String, desc: "Type of topping"
         end
-        get ":type", root: "pizzas" do
-          Pizzas.where(type: permitted_params[:type]).first!
+        get ":topping", root: "pizzas" do
+          Pizzas.where(topping: permitted_params[:topping]).first!
         end
 
         # need to figure out how to sum all pizzas eaten on each day
