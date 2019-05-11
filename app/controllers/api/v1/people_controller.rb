@@ -9,7 +9,7 @@ module API
 
       # GET person by name
       get '/people/:name' do
-        @person = Trip.find_by(name: params[:name])
+        @person = Person.find_by(name: params[:name])
         render json: @person
       end
     end
