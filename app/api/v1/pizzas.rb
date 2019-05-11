@@ -1,13 +1,13 @@
 module API
   module V1
     class Pizzas < Grape::API
-      version 'v1', using: :path, vendor: 'pizza-analytics'
+      version 'v1', using: :path
 
       resource :pizzas do
         # returns ALL pizzas
         desc "Return all pizza"
-        get "", root: :pizzas do
-          Pizzas.all
+        get "/" do
+          Pizza.all
         end
 
         # returns ALL pizzas BY topping
@@ -15,7 +15,7 @@ module API
         params do
           requires :topping, type: String, desc: "Type of topping"
         end
-        get ":topping", root: "pizzas" do
+        get ":topping" do
           Pizzas.where(topping: permitted_params[:topping]).first!
         end
 
