@@ -1,6 +1,8 @@
 module API
   module V1
     class Pizzas < Grape::API
+      version 'v1', using: :path, vendor: 'pizza-analytics'
+      
       resource :pizzas do
         # returns ALL pizzas
         desc "Return all pizza"

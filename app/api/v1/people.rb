@@ -1,6 +1,8 @@
 module API
   module V1
     class People < Grape::API
+      version 'v1', using: :path, vendor: 'pizza-analytics'
+
       resource :people do
         # returns ALL people
         desc "Return all people"
