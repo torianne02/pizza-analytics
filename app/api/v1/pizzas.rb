@@ -5,18 +5,18 @@ module API
 
       resource :pizzas do
         # returns ALL pizzas
-        desc "Return all pizza"
-        get "/" do
+        desc 'Return all pizza'
+        get '/' do
           Pizza.all
         end
 
         # returns ALL pizzas BY topping
-        desc "Return all pizzas of a certain topping"
+        desc 'Return all pizzas of a certain topping'
         params do
-          requires :topping, type: String, desc: "Type of topping"
+          requires :topping, type: String
         end
         get ':topping' do
-          Pizza.where(topping: permitted_params[:topping])
+          Pizza.where(topping: params[:topping])
         end
 
         # need to figure out how to sum all pizzas eaten on each day

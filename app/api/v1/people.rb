@@ -5,18 +5,18 @@ module API
 
       resource :people do
         # returns ALL people
-        desc "Return all people"
-        get "/" do
+        desc 'Return all people'
+        get '/' do
           Person.all
         end
 
         # returns ONE person by NAME
-        desc "Return a person"
+        desc 'Return a person'
         params do
-          requires :name, type: String, desc: "Name of the person"
+          requires :name, type: String, desc: 'Name of the person'
         end
-        get ":name" do
-          Person.find_by(name: permitted_params[:name])
+        get ':name' do
+          Person.find(params[:name])
         end
       end
     end
