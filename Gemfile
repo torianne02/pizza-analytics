@@ -15,6 +15,7 @@ gem 'rake'
 # database
 gem 'pg'
 gem 'sequel'
+gem 'sequel-seed'
 # allows cross-origin resource sharing
 gem 'rack-cors', :require => 'rack/cors'
 
