@@ -4,6 +4,5 @@ class Pizza < Sequel::Model
   def validate
     super
     errors.add(:topping, "must be present") if topping.empty?
-    errors.add(:date_consumed, "must be present") if date_consumed.empty?
   end
 end

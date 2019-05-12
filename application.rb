@@ -28,6 +28,7 @@ module API
   end
 end
 
+# loads seed data into db
 Sequel::Seeder.apply(DB, "db/seeds/")
 
 ENV['SINATRA_ENV'] ||= "development"
