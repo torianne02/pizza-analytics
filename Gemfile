@@ -4,16 +4,24 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
+# sinatra ruby framework
 gem 'sinatra'
+# grape gems
 gem 'grape'
-gem 'activerecord', :require => 'active_record'
-gem 'sinatra-activerecord'
-gem 'rake'
-gem 'require_all'
-gem 'shotgun'
-gem 'pg'
-gem 'rack-cors', :require => 'rack/cors'
 gem 'grape-active_model_serializers'
 gem 'grape-swagger'
+# activerecord
+gem 'activerecord', :require => 'active_record'
+gem 'sinatra-activerecord'
+# rake
+gem 'rake'
+# database
+gem 'pg'
+gem 'sequel'
+# allows cross-origin resource sharing
+gem 'rack-cors', :require => 'rack/cors'
 
+# other useful gems
+gem 'require_all'
+gem 'shotgun'
 gem 'pry'
