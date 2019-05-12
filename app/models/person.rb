@@ -4,5 +4,5 @@ class Person < Sequel::Model
   def validate
     super
     errors.add(:name, "must be present") if name.empty?
-  end 
+  end
 end
