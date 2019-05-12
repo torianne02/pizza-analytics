@@ -11,9 +11,20 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
+ENV['RACK_ENV'] = 'test'
+
+require 'rack/test'
+
+require_relative '../application.rb'
+require_relative './support/helpers.rb'
+
+OUTER_APP = Rack::Builder.parse_file('config.ru').first
+
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  config.include Helpers
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
