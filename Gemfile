@@ -10,9 +10,6 @@ gem 'sinatra'
 gem 'grape'
 gem 'grape-active_model_serializers'
 gem 'grape-swagger'
-# activerecord
-gem 'activerecord', :require => 'active_record'
-gem 'sinatra-activerecord'
 # rake
 gem 'rake'
 # database
