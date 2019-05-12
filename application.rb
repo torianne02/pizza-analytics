@@ -26,18 +26,8 @@ ENV['SINATRA_ENV'] ||= "development"
 require 'bundler'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
-# establish ActiveRecord connection to db
-configure :production do
- db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/pizza-analytics')
-
- ActiveRecord::Base.establish_connection(
-
-   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-   :host     => db.host,
-   :database => db.path[1..-1]+'_test',
-   :encoding => unicode
- )
-end
+# establish Sequel connection to db
+DB = Sequel.connect(adapter: :postgres, database: 'pizz_analytics_development', host: 'localhost')
 
 # mount Grape application
 PizzaAnalytics = Rack::Builder.new {
