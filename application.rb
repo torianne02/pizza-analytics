@@ -1,6 +1,9 @@
 require 'grape'
-require 'active_record'
 require 'sinatra'
+require 'sequel'
+
+# establish Sequel connection to db
+DB = Sequel.connect(adapter: :postgres, database: 'pizza_analytics_development', host: 'localhost')
 
 # loading files from the models and api folders
 Dir["#{File.dirname(__FILE__)}/app/models/**/*.rb"].each { |f| require f }
@@ -25,9 +28,6 @@ ENV['SINATRA_ENV'] ||= "development"
 
 require 'bundler'
 Bundler.require(:default, ENV['SINATRA_ENV'])
-
-# establish Sequel connection to db
-DB = Sequel.connect(adapter: :postgres, database: 'pizz_analytics_development', host: 'localhost')
 
 # mount Grape application
 PizzaAnalytics = Rack::Builder.new {
