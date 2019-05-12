@@ -1,5 +1,5 @@
-class Pizza < ActiveRecord::Base
-  belongs_to :person
+class Pizza < Sequel::Model
+  many_to_one :person
 
-  validates :topping, presence: true 
+  # validates :topping, presence: true
 end
