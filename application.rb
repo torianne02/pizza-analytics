@@ -1,6 +1,10 @@
 require 'grape'
 require 'sinatra'
 require 'sequel'
+require 'sequel/extensions/seed'
+
+# load the seed extension
+Sequel.extension :seed
 
 # establish Sequel connection to db
 DB = Sequel.connect(adapter: :postgres, database: 'pizza_analytics_development', host: 'localhost')
@@ -23,6 +27,8 @@ module API
       mount V1::Pizzas
   end
 end
+
+Sequel::Seeder.apply(DB, "db/seeds/")
 
 ENV['SINATRA_ENV'] ||= "development"
 
