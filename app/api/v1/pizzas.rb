@@ -17,6 +17,7 @@ module API
 
         desc 'Return day with highest sales of month'
         get '/monthly-sales' do
+          # using raw SQL with Sequel to return day with highest consumption in each month
           @data = DB["WITH day_month_sales as (
 
             SELECT date_consumed, count(*) num_sales
@@ -43,6 +44,7 @@ module API
         end
 
         desc 'Return streaks of days that are > the day prior'
+        # using raw SQL with Sequel to return streaks of days that consump is > prior day
         get '/streaks' do
           @data = DB["
             WITH daily_pizzas as (
@@ -61,19 +63,6 @@ module API
             order by curr_day.date_consumed, prev_day.date_consumed"]
           return @data
         end
-
-        # returns ALL pizzas BY topping
-        # desc 'Return all pizzas of a certain topping'
-        # params do
-        #   requires :topping, type: String
-        # end
-        # get ':topping' do
-        #   Pizza.where(topping: params[:topping])
-        # end
-
-        # need to figure out how to sum all pizzas eaten on each day
-        # then need to figure out how many consecutive days more pizzas have been
-          # consumed than the day before
       end
     end
   end
