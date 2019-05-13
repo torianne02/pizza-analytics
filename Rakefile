@@ -1,6 +1,6 @@
 require_relative './application.rb'
 
-require 'sinatra/activerecord/rake'
+# require 'sinatra/activerecord/rake'
 
 task :console do
   Pry.start

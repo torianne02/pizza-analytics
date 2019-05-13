@@ -1,6 +1,13 @@
 require 'grape'
-require 'active_record'
 require 'sinatra'
+require 'sequel'
+require 'sequel/extensions/seed'
+
+# load the seed extension
+Sequel.extension :seed
+
+# establish Sequel connection to db
+DB = Sequel.connect(adapter: :postgres, database: 'pizza_analytics_development', host: 'localhost')
 
 # loading files from the models and api folders
 Dir["#{File.dirname(__FILE__)}/app/models/**/*.rb"].each { |f| require f }
@@ -15,29 +22,19 @@ module API
     get :status do
       { status: 'ok' }
     end
-    
+
       mount V1::People
       mount V1::Pizzas
   end
 end
 
+# loads seed data into db
+Sequel::Seeder.apply(DB, "db/seeds/")
+
 ENV['SINATRA_ENV'] ||= "development"
 
 require 'bundler'
 Bundler.require(:default, ENV['SINATRA_ENV'])
-
-# establish ActiveRecord connection to db
-configure :production do
- db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/pizza-analytics')
-
- ActiveRecord::Base.establish_connection(
-
-   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-   :host     => db.host,
-   :database => db.path[1..-1]+'_test',
-   :encoding => unicode
- )
-end
 
 # mount Grape application
 PizzaAnalytics = Rack::Builder.new {

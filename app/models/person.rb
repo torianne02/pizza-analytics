@@ -1,5 +1,8 @@
-class Person < ActiveRecord::Base
-  has_many :pizzas
+class Person < Sequel::Model
+  one_to_many :pizzas
 
-  validates :name, presence: true 
+  def validate
+    super
+    errors.add(:name, "must be present") if name.empty?
+  end
 end
