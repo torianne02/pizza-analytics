@@ -82,7 +82,7 @@ module API
             @streaks.push(@current_streak)
           end
 
-          return @streaks.to_json
+          return @streaks.each {|streak| streak.to_json}
         end
       end
     end
