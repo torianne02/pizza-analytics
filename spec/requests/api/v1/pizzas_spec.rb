@@ -7,10 +7,6 @@ describe API::V1::Pizzas do
     OUTER_APP
   end
 
-  let(:pepperoni) { Pizza.new(topping: "pepperoni", person_id: 1, date_consumed: "2019-05-10") }
-  let(:sausage) { Pizza.new(topping: "sausage", person_id: 1, date_consumed: "2019-05-11") }
-  let(:pineapple) { Pizza.new(topping: "pineapple", person_id: 3, date_consumed: "2019-05-11") }
-
   describe 'GET /api/v1/pizzas/monthly-sales' do
     before do
       get "/api/v1/pizzas/monthly-sales"
@@ -21,7 +17,7 @@ describe API::V1::Pizzas do
     end
 
     it "returns the day of each month with the highest number of pizzas consumed" do
-      # expect(JSON.parse(last_response.body)).to include({"date_consumed"=>"2015-01-07", "num_sales"=>3})
+      expect(JSON.parse(last_response.body)).to include(a_kind_of(Object))
     end
   end
 
@@ -35,7 +31,7 @@ describe API::V1::Pizzas do
     end
 
     it "returns streaks where the current day is greater than the previous day" do
-      # expect(JSON.parse(last_response.body)).to include({"date_consumed"=>"2015-01-07", "num_pizzas"=>2})
+      expect(JSON.parse(last_response.body)).to include(a_kind_of(Object))
     end
   end
 end
