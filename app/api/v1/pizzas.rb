@@ -46,22 +46,43 @@ module API
         desc 'Return streaks of days that are > the day prior'
         # using raw SQL with Sequel to return streaks of days that consump is > prior day
         get '/streaks' do
-          @data = DB["
-            WITH daily_pizzas as (
-                SELECT date_consumed
-                  , count(1) num_pizzas
-                  , ROW_NUMBER() OVER (ORDER BY date_consumed) AS rank
-                FROM pizzas
-                GROUP BY date_consumed
-            )
+          @pizzas = DB["SELECT date_consumed, count(*) num_pizzas
+            FROM pizzas
+            GROUP BY date_consumed
+            ORDER BY date_consumed"]
 
-            select curr_day.date_consumed, curr_day.num_pizzas
-            from daily_pizzas curr_day
-              left join daily_pizzas prev_day
-                on curr_day.rank = prev_day.rank + 1
-             WHERE curr_day.num_pizzas > coalesce(prev_day.num_pizzas,0)
-            order by curr_day.date_consumed, prev_day.date_consumed"]
-          return @data
+          @streaks = []
+          @current_streak = []
+          @previous_day = {}
+
+          @pizzas.each do |pizza|
+            # if previous day is empty, populate it
+            if @previous_day == {}
+              @previous_day = pizza
+            # if num of pizzas on current day are > previous day's
+            elsif pizza[:num_pizzas] > @previous_day[:num_pizzas]
+              # if current_streak is empty add current pizza
+              if @current_streak == []
+                 @current_streak.push(pizza)
+              # if !empty make sure today's num of pizzas is > last pizza pushed
+              elsif pizza[:num_pizzas] > @current_streak[@current_streak.length-1][:num_pizzas]
+                @current_streak.push(pizza)
+              end
+            # if current streak is populated and current num of pizzas is < previous pizza
+            elsif @current_streak.length > 1
+              @streaks.push(@current_streak)
+              @current_streak = []
+            else
+              @current_streak = []
+            end
+            @previous_day = pizza
+          end
+
+          if @current_streak.length > 1
+            @streaks.push(@current_streak)
+          end
+
+          return @streaks.to_json
         end
       end
     end
