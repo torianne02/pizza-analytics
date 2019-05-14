@@ -2,6 +2,7 @@ require 'grape'
 require 'sinatra'
 require 'sequel'
 require 'sequel/extensions/seed'
+require 'csv'
 
 # load the seed extension
 Sequel.extension :seed
@@ -28,8 +29,18 @@ module API
   end
 end
 
-# loads seed data into db
+loads seed data into db
 Sequel::Seeder.apply(DB, "db/seeds/")
+
+# loads CSV file data - - COULD NOT GET TO WORK
+# CSV.foreach("db/data.csv", headers: true) do |row|
+#   @person_id = DB["SELECT id FROM people WHERE name=#{row[0]}"]
+#   if @person_id == nil
+#     @person_id = DB["INSERT INTO people (name) VALUES (#{row[0]}) returning id"]
+#   end
+#
+#   DB["INSERT INTO pizzas (person_id, topping, date_consumed) VALUES (#{@person_id}, #{row[1]}, #{row[2]})"]
+# end
 
 ENV['SINATRA_ENV'] ||= "development"
 
