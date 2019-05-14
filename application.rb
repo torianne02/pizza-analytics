@@ -29,7 +29,7 @@ module API
   end
 end
 
-loads seed data into db
+# loads seed data into db
 Sequel::Seeder.apply(DB, "db/seeds/")
 
 # loads CSV file data - - COULD NOT GET TO WORK
