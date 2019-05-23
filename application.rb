@@ -53,8 +53,10 @@ Sequel::Seeder.apply(DB, "db/seeds/")
   # end
 # end
 
+# sets environment to SINATRA_ENV base and development, if not available
 ENV['SINATRA_ENV'] ||= "development"
 
+# sets up the load paths and automatically requires all dependencies
 require 'bundler'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
