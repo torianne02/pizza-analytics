@@ -8,6 +8,7 @@ default: &default
 development:
   <<: *default
   database: pizza_analytics_development
+  # database: pizza_analytics_development_4
 
 test:
   <<: *default
