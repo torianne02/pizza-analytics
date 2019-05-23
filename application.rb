@@ -34,12 +34,21 @@ Sequel::Seeder.apply(DB, "db/seeds/")
 
 # loads CSV file data - - COULD NOT GET TO WORK
 # CSV.foreach("db/data.csv", headers: true) do |row|
-#   @person_id = DB["SELECT id FROM people WHERE name=#{row[0]}"]
-#   if @person_id == nil
-#     @person_id = DB["INSERT INTO people (name) VALUES (#{row[0]}) returning id"]
-#   end
-#
-#   DB["INSERT INTO pizzas (person_id, topping, date_consumed) VALUES (#{@person_id}, #{row[1]}, #{row[2]})"]
+#   @person_id = DB["INSERT INTO people (name) VALUES ('#{row[0]}')
+#     ON CONFLICT DO NOTHING RETURNING id"]
+    # @person_id
+    # puts @person_id.first
+  # @pizza_id = DB["
+  #   INSERT INTO pizzas (person_id, topping, date_consumed)
+  #   VALUES (#{@person_id}, '#{row[1]}', '#{row[2]}')
+  #   retruning id"]
+  # # @pizza_id = @pizza_id.map(:id)
+  #
+  # @resultset = DB["select * from pizzas where id = '#{@pizza_id}'"]
+  # @resultset = @resultset.all
+  # @resultset.each do |result|
+  #   puts result
+  # end
 # end
 
 ENV['SINATRA_ENV'] ||= "development"
