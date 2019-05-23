@@ -44,8 +44,8 @@ module API
         end
 
         desc 'Return streaks of days that are > the day prior'
-        # using raw SQL with Sequel to return streaks of days that consump is > prior day
         get '/streaks' do
+          # using raw SQL with Sequel to return num of pizzas in each given day
           @pizzas = DB["SELECT date_consumed, count(*) num_pizzas
             FROM pizzas
             GROUP BY date_consumed
@@ -78,10 +78,12 @@ module API
             @previous_day = pizza
           end
 
+          # if current_streak is larger than 1 once the loop is finished, add it to streaks
           if @current_streak.length > 1
             @streaks.push(@current_streak)
           end
 
+          # return all instances of streaks in JSON
           return @streaks.each {|streak| streak.to_json}
         end
       end
