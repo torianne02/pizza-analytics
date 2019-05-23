@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sequel'
 require 'sequel/extensions/seed'
 require 'csv'
+# require 'grape-active_model_serializers'
 
 # load the seed extension
 Sequel.extension :seed
@@ -18,6 +19,7 @@ Dir["#{File.dirname(__FILE__)}/app/api/**/*.rb"].each { |f| require f }
 module API
   class Root < Grape::API
     format :json
+    # formatter :json, Grape::Formatter::ActiveModelSerializers
     prefix :api
 
     get :status do
