@@ -11,8 +11,8 @@ Then, run the following:
 $ bundle install
 $ createdb pizza_analytics_development
 $ createdb pizza_analytics_test
-$ sequel -m /db/migrate/ postgres://localhost/pizza_analytics_development
-$ sequel -m /db/migrate/ postgres://localhost/pizza_analytics_test
+$ sequel -m db/migrate/ postgres://localhost/pizza_analytics_development
+$ sequel -m db/migrate/ postgres://localhost/pizza_analytics_test
 $ shotgun -p 9393
 ```
 You will then need to open up a web browser at the server that is listening, which should look like this  `http://127.0.0.1:9393/`
