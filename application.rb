@@ -2,7 +2,6 @@ require 'grape'
 require 'sinatra'
 require 'sequel'
 require 'sequel/extensions/seed'
-# require 'csv'
 # require 'grape-active_model_serializers'
 
 # load the seed extension
