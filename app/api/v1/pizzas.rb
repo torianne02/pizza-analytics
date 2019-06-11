@@ -65,7 +65,7 @@ module API
               if @current_streak == []
                  @current_streak.push(pizza)
               # if !empty make sure today's num of pizzas is > last pizza pushed
-              elsif pizza[:num_pizzas] > @current_streak[@current_streak.length-1][:num_pizzas]
+              elsif pizza[:num_pizzas] > @current_streak[@current_streak.length - 1][:num_pizzas]
                 @current_streak.push(pizza)
               end
             # if current streak is populated and current num of pizzas is < previous pizza
@@ -84,7 +84,7 @@ module API
           end
 
           # return all instances of streaks in JSON
-          return @streaks.each {|streak| streak.to_json}
+          return @streaks
         end
       end
     end
