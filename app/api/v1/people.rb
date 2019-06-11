@@ -9,8 +9,7 @@ module API
           # returns person by name if name param is provided
           if params.include?("name")
             @person = Person.where(name: params[:name]).first!
-            @pizzas = @person.pizzas.each {|pizza| pizza}
-            return [@person, @pizzas]
+            return [@person, @person.pizzas]
           # returns all people if there is no name param
           else
             Person.all
