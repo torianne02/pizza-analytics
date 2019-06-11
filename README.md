@@ -1,6 +1,8 @@
 # pizza-analytics
 Welcome to *Pizza Analytics*, a Ruby-Sinatra-Grape-Sequel API powered Web-app designed with React. With *Pizza Analytics*, the user can see all pizzas and people within the database. A user can search people by name and see all pizzas by topping. The highest day of sales in a month is displayed, as well as streaks of days that are greater than the day before.
 
+This project was originally created for a company take home coding assignment. 
+
 ## Installation and Usage
 Clone repository `$ git clone git@github.com:torianne02/pizza-analytics.git`
 
